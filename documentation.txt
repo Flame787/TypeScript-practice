@@ -1,0 +1,40 @@
+- Project was created with CLI-command:
+
+npx create-react-app react-ts --template typescript
+
+- where react-ts is the name of the application.
+
+- Once the app has been installed, position into it's root folder:  
+
+cd react-ts
+
+- Then, start the development server on http://localhost:3000/: 
+
+npm start
+
+----------------------------------------------------------------------
+
+index.tsx:
+
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+- Not working, because since React 18, 'ReactDOM.render' doesn't exist anymore in react-dom/client.
+- We must use ReactDOM.createRoot(...) and then call .render(...) on that root object:
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(<App />);
+
+- Or this would be even better, with Strictmode:
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
