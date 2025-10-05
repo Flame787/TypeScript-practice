@@ -5,13 +5,13 @@ import classes from "./Todos.module.css";
 
 // function Todos(props: { items: string[], children }) {
 
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[]; onRemoveTodo: (is: string) => void }> = (props) => {
   // FC - Function Component (Generic type definition built into React package)
   // React.FC<{items: string[]}> - defining the type of props that this component expects to receive
   return (
     <ul className={classes.todos}>
       {props.items.map((item) => (
-        <TodoItem key={item.id} text={item.text} />
+        <TodoItem key={item.id} text={item.text} onRemoveTodo={props.onRemoveTodo.bind(null, item.id)} />
       ))}
     </ul>
   );
